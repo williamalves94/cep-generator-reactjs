@@ -4,20 +4,23 @@ import api from './services/api';
 
 export const App = () => {
 
-  const [ input, setInput ] = useState('')
+  const [ input, setInput ] = useState('');
+  const [ cep, setCep ] = useState({});
 
   const handleSearch = async () => {
     if(input === ''){
-      alert('Digite o cep')
+      alert('Digite o cep!')
       return;
     }
 
     try{
       const response = await api.get(`${input}/json`)
-      console.log(response)
+      setCep(response.data);
+      setInput('');
+
     } catch{
-      alert('Erro, cep inválido')
-      setInput('')
+      alert('Erro, cep inválido');
+      setInput('');
     }
   }
 
@@ -37,11 +40,11 @@ export const App = () => {
 
         <ButtonSearch onClick={handleSearch} >Search</ButtonSearch>
         <DivMain>
-          <h2>CEP: 18044000</h2>
-          <span>Rua Teste</span>
-          <span>Complemento: Algum complemento</span>
-          <span>Vila Rosa</span>
-          <span>Sorocaba - SP</span>
+          <h2>CEP: {cep.cep}</h2>
+          <span>{cep.logradouro}</span>
+          <span>Complemento: {cep.complemento}</span>
+          <span>{cep.bairro}</span>
+          <span>{cep.localidade} - {cep.uf}</span>
         </DivMain>
         </Container>
 
