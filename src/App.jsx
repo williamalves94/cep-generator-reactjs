@@ -1,5 +1,6 @@
 import React from "react"
 import { Container, DivInput, ButtonSearch } from "./styles"
+import { BsSearch } from 'react-icons/bs';
 
 export const App = () => {
 
@@ -12,7 +13,7 @@ export const App = () => {
           <input type="text" placeholder="Digite seu cep..."/>
         </DivInput>
 
-        <ButtonSearch>Procurar</ButtonSearch>
+        <ButtonSearch>Search <BsSearch /></ButtonSearch>
         </Container>
       </div>
 
